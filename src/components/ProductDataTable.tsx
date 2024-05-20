@@ -13,19 +13,15 @@ import { useRouter } from 'next/navigation';
 import { delete_a_product } from '@/Services/Admin/product';
 
 
-
-
 type ProductData = {
   _id: string,
   productName: string,
   productNorm: string,
-
   productDescription: string,
   productImage: string,
   productSlug: string,
   productPrice: Number,
   productWeight: Number,
-
   productQuantity: Number,
   productFeatured: Boolean,
   productCategory: {
@@ -56,41 +52,40 @@ export default function ProductDataTable() {
     setFilteredData(prodData);
   }, [prodData])
 
-
-
-
-
-
-
   const columns = [
     {
       name: 'Tên',
       selector: (row: ProductData) => row?.productName,
-      sortable: true,
+      sortable: true ,
+      
     },
     {
       name: 'Danh mục',
       selector: (row: ProductData) => row?.productCategory?.categoryName,
-      sortable: true,
+      sortable: true ,
+      
     },
     {
       name: 'Trọng lượng',
-      selector: (row: ProductData) => row?.productWeight,
-      sortable: true,
+      selector: (row: ProductData) => row?.productWeight.toString(),
+      sortable: true ,
+      
     },
     {
       name: 'Số lượng',
-      selector: (row: ProductData) => row?.productQuantity,
-      sortable: true,
+      selector: (row: ProductData) => row?.productQuantity.toString(),
+      sortable: true ,
     },
     {
       name: 'Giá',
-      selector: (row: ProductData) => row?.productPrice,
-      sortable: true,
+      selector: (row: ProductData) => row?.productPrice.toString(),
+      sortable: true ,
+      
     },
     {
       name: 'Ảnh',
       cell: (row: ProductData) => <Image src={row?.productImage} alt='No Image Found' className='py-2' width={100} height={100} />
+      
     },
     {
       name: 'Hành động',
@@ -137,6 +132,7 @@ export default function ProductDataTable() {
   return (
     <div className='w-full h-full'>
       <DataTable
+        
         columns={columns}
         data={filteredData || []}
         key={'ThisProductData'}
