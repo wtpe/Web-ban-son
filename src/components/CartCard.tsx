@@ -126,7 +126,7 @@ export default function CartCard({ productID, userID, _id , quantity }: Data) {
         <div className='bg-white w-10/12  rounded-xl m-2 border-b flex-col md:flex-row h-72  md:h-40 py-2 px-4 flex justify-around items-center'>
             <Image src={productID?.productImage} alt='no image found' width={100} height={150} className='rounded' />
             <h3 className='font-semibold text-lg'>{productID?.productName}</h3>
-            <h3 className='font-semibold text-lg'>Giá : {productID?.productPrice.toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</h3>
+            <h3 className='font-semibold text-lg'>Giá : {productID?.productPrice}</h3>
             <h3 className='font-semibold text-lg'>Trọng lượng : {productID?.productWeight} kg</h3>
 
             <div className='flex  justify-center items-center'>
