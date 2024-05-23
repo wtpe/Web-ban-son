@@ -6,6 +6,7 @@ import ProductDataTable from './ProductDataTable';
 import CategoryDataTable from './CategoryDataTable';
 import PendingOrdersDataTable from './PendingOrdersDataTable';
 import CompletedOrderDataTable from './CompletedOrderDataTable';
+import UserDataTable from './UserDataTable';
 
 export default function SuperComponent() {
     const navActive = useSelector((state: RootState) => state.AdminNav.ActiveNav)
@@ -16,6 +17,8 @@ export default function SuperComponent() {
             return <ProductDataTable />
         case 'activeCategories':
             return <CategoryDataTable/>
+        case 'activeUsers':
+            return <UserDataTable/>
         case 'activePendingOrder':
             return <PendingOrdersDataTable/>
         case 'activeDeliveredOrder':

@@ -28,6 +28,7 @@ export default function AdminNavbar() {
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow text-black bg-gray-50 rounded-box w-52">
                         <li onClick={() => dispatch(setNavActive('Base'))}><button >Trang chủ</button></li>
+                        <li onClick={() => dispatch(setNavActive('activeUsers'))}><button >Tài khoản</button></li>
                         <li onClick={() => dispatch(setNavActive('activeCategories'))}><button >Danh mục</button></li>
                         <li onClick={() => dispatch(setNavActive('activeProducts'))}><button >Sản phẩm</button></li>
                         <li ><Link href={"/product/add-product"}>Thêm sản phẩm</Link></li>

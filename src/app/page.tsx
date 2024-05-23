@@ -6,7 +6,7 @@ import Hero from '@/components/Hero'
 import FeaturedProduct from '@/components/FeaturedProduct'
 import TopCategories from '@/components/TopCategories'
 import { get_all_categories } from '@/Services/Admin/category'
-import { get_all_products,get_product } from '@/Services/Admin/product'
+import { get_all_products} from '@/Services/Admin/product'
 import useSWR from 'swr'
 import { toast, ToastContainer } from 'react-toastify'
 import { setCategoryData, setCatLoading, setProdLoading, setProductData } from '@/utils/AdminSlice'
@@ -16,6 +16,7 @@ import Loading from './loading'
 import { setUserData } from '@/utils/UserDataSlice'
 import { RootState } from '@/Store/store'
 import ChatMessenger from '@/components/ChatMessenger'
+
 
 
 export default function Home() {
@@ -39,10 +40,7 @@ export default function Home() {
   const FetchDataOFProductAndCategory = async () => {
     const categoryData = await get_all_categories();
     if (categoryData?.success !== true) toast.error(categoryData?.message)
-
     dispatch(setCategoryData(categoryData?.data))
-
-
 
     const productData = await get_all_products();
     if (productData?.success !== true) toast.error(productData?.message)
@@ -65,7 +63,7 @@ export default function Home() {
           </>
         
       }
-      <ChatMessenger/>
+      {/* <ChatMessenger/> */}
       <Footer />
       <ToastContainer />
     </>

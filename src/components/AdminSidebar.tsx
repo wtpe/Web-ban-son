@@ -2,7 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 import { RxDashboard } from 'react-icons/rx'
 import { AiFillHome } from 'react-icons/ai'
-import { BiCategory } from 'react-icons/bi'
+import { BiCategory, BiUser } from 'react-icons/bi'
 import { GiLoincloth } from 'react-icons/gi'
 import { IoIosAddCircle } from 'react-icons/io'
 import { MdOutlinePendingActions } from 'react-icons/md'
@@ -21,6 +21,7 @@ export default function AdminSidebar() {
             <div className='w-full '>
                 <ul className='flex px-4 flex-col items-start justify-center'>
                     <li onClick={() => dispatch(setNavActive('Base'))} className='py-3 px-1 mb-3'><button className='flex items-center justify-center'> <AiFillHome className='mx-2' /> Trang chủ</button></li>
+                    <li onClick={() => dispatch(setNavActive('activeUsers'))} className='py-3 px-1 mb-3'><button className='flex items-center justify-center'> <BiUser className='mx-2' />  Tài khoản</button></li>
                     <li onClick={() => dispatch(setNavActive('activeCategories'))} className='py-3 px-1 mb-3'><button className='flex items-center justify-center'> <BiCategory className='mx-2' />  Danh mục</button></li>
                     <li onClick={() => dispatch(setNavActive('activeProducts'))} className='py-3 px-1 mb-3'><button className='flex items-center justify-center'> <GiLoincloth className='mx-2' />  Sản phẩm</button></li>
                     <li className='py-3 px-1 mb-3'><Link href={'/product/add-product'} className='flex items-center justify-center'> <IoIosAddCircle className='mx-2' /> Thêm sản phẩm</Link></li>

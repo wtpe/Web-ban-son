@@ -142,7 +142,7 @@ export default function PendingOrdersDataTable() {
       setFilteredData(orderData);
     } else {
       setFilteredData(orderData?.filter((item) => {
-        const itemData = item?._id?.toUpperCase();
+        const itemData = item?.user?.name?.toUpperCase();
         const textData = search.toUpperCase();
         return itemData.indexOf(textData) > -1;
       }))
@@ -158,7 +158,7 @@ export default function PendingOrdersDataTable() {
         data={filteredData || []}
         key={'ThisOrdersData'}
         pagination
-        keyField="id"
+        keyField="name"
         title={`Danh sách đơn hàng chưa xử lý`}
         fixedHeader
         fixedHeaderScrollHeight='700px'
@@ -170,7 +170,7 @@ export default function PendingOrdersDataTable() {
           <input className='w-60 dark:bg-transparent py-2 px-2  outline-none  border-b-2 border-orange-600' type={"search"}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder={"Mã đơn"} />
+            placeholder={"Tên khách hàng"} />
         }
         className="bg-white px-4 h-5/6 "
       />
