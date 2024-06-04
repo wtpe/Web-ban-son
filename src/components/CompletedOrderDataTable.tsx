@@ -19,7 +19,7 @@ import { setBookmark } from '@/utils/Bookmark';
 interface Order {
     createdAt: string;
     deliveredAt: string;
-    isDelivered: boolean;
+    isDelivered: string;
     isPaid: boolean;
     itemsPrice: number;
     orderItems: {
@@ -81,7 +81,7 @@ export default function CompletedOrderDataTable() {
 
 
   useEffect(() => {
-    const filteredCompletedOrder =  data?.filter((item) => item?.isDelivered === true)
+    const filteredCompletedOrder =  data?.filter((item) => (item?.isDelivered === 'Hoàn thành')||(item?.isDelivered === 'Huỷ đơn'))
     setOrderData(filteredCompletedOrder)
   }, [data])
 
@@ -113,14 +113,14 @@ export default function CompletedOrderDataTable() {
     },
     {
       name: 'Trạng thái',
-      selector: (row: Order) => row?.isDelivered ? 'Hoàn thành' : 'Chưa xử lý',
+      selector: (row: Order) => row?.isDelivered ,
       sortable: true,
     },
     {
       name: 'Hoạt động',
       cell: (row: Order) => (
 
-        <button onClick={() => router.push(`/order/view-orders-details/${row?._id}`)} className=' w-20 py-2 mx-2 text-xs text-green-600 hover:text-white my-2 hover:bg-green-600 border border-green-600 rounded transition-all duration-700'>Chi tiết</button>
+        <button onClick={() => router.push(`/order/view-orders-details/${row?._id}`)} className=' w-20 py-2 mx-2 text-xs text-yellow-600 hover:text-white my-2 hover:bg-yellow-600 border border-yellow-600 rounded transition-all duration-700'>Chi tiết</button>
 
       )
     },

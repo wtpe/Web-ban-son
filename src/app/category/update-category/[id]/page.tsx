@@ -21,7 +21,6 @@ type Inputs = {
     slug: string,
 }
 
-
 type CategoryData = {
     _id: string;
     categoryName: string;
@@ -31,14 +30,6 @@ type CategoryData = {
     createdAt: string;
     updatedAt: string;
 };
-
-
-
-
-
-
-
-
 
 interface pageParam {
     id: string
@@ -81,10 +72,6 @@ export default function Page({ params, searchParams }: { params: pageParam, sear
         criteriaMode: "all"
     });
 
-
-
-
-
     const setValueofFormData = useCallback(
         () => {
             setValue('name', catData?.categoryName ?? '')
@@ -103,8 +90,6 @@ export default function Page({ params, searchParams }: { params: pageParam, sear
 
     const onSubmit: SubmitHandler<Inputs> = async data => {
         setLoader(false)
-
-
         const updatedData: Inputs = {
             _id: params.id,
             name: data.name !== catData?.categoryName ? data.name : catData?.categoryName,

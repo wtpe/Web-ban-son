@@ -4,6 +4,7 @@ import Category from "./Category";
 
 
 
+
 const ProductSchema = new mongoose.Schema({
     productName : String,
     productDescription :String ,

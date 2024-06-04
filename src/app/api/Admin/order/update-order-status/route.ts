@@ -10,11 +10,10 @@ export async function PUT(req: Request) {
 
     if (isAuthenticated === 'admin') {
       const data = await req.json();
-      const  id = data
-      console.log(id)
-      if(!id) return NextResponse.json({ success: false, message: "Chưa có mã đơn hàng" });
+      const  {_id,isDelivered} = data
+      if(!_id) return NextResponse.json({ success: false, message: "Chưa có mã đơn hàng" });
 
-      const saveData = await Order.findOneAndUpdate(id , { isDelivered : true }  , { new: true });
+      const saveData = await Order.findByIdAndUpdate(_id , { isDelivered}  , { new: true });
 
       if (saveData) {
 

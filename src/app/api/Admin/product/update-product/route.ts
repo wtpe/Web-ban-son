@@ -9,10 +9,17 @@ export async function PUT(req: Request) {
     const isAuthenticated = await AuthCheck(req);
 
     if (isAuthenticated === 'admin') {
-      const data = await req.json();
-      const  {name , _id  , description  , slug , feature , weight , price , categoryID,norm,quantity } = data
 
-      const saveData = await Product.findOneAndUpdate(_id , { productName : name , productDescription : description ,productSlug: slug , productPrice : price ,  productWeight : weight ,  productCategory : categoryID, productNorm : norm,productQuantity:quantity  }  , { new: true });
+
+      const data = await req.json();
+      
+      const  {name , _id  , description  , slug , feature , weight , price , categoryID,norm,quantity } = data
+      // const { error } = AddProductSchema.validate(productColor);
+
+      console.log('id',_id)
+      
+
+      const saveData = await Product.findByIdAndUpdate(_id , { productName : name , productDescription : description ,productSlug: slug , productPrice : price ,  productWeight : weight ,  productCategory : categoryID, productNorm : norm,productQuantity:quantity }  , { new: true });
 
       if (saveData) {
 
@@ -23,11 +30,8 @@ export async function PUT(req: Request) {
         return NextResponse.json({ success: false, message: "Lỗi cập nhật sản phẩm" });
 
       }
-
     } else {
-
       return NextResponse.json({ success: false, message: "Lỗi đăng nhập" });
-
     }
 
   } catch (error) {

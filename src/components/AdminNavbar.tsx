@@ -35,6 +35,7 @@ export default function AdminNavbar() {
                         <li><Link href={"/category/add-category"}>Thêm danh mục</Link></li>
                         <li onClick={() => dispatch(setNavActive('activePendingOrder'))}><button >Đơn hàng chưa xử lý</button></li>
                         <li onClick={() => dispatch(setNavActive('activeDeliveredOrder'))}><button >Đơn hàng đã hoàn thành</button></li>
+                        <li onClick={() => dispatch(setNavActive('activeStatisTable'))}><button >Thống kê</button></li>
                     </ul>
                 </div>
             </div>
@@ -46,12 +47,12 @@ export default function AdminNavbar() {
                         </div>
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-gray-50 rounded-box w-52">
-                        <li>
+                        {/* <li>
                             <Link href={"/Dashboard"} className="justify-between">
                                 Thông tin
                                 <span className="badge">New</span>
                             </Link>
-                        </li>
+                        </li> */}
                         <li onClick={handleLogout}><button> Đăng xuất </button></li>
                     </ul>
                 </div>

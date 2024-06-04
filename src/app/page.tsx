@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react'
-import Navbar from '@/components/Navbar'
+
 import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
 import FeaturedProduct from '@/components/FeaturedProduct'
@@ -16,6 +16,7 @@ import Loading from './loading'
 import { setUserData } from '@/utils/UserDataSlice'
 import { RootState } from '@/Store/store'
 import ChatMessenger from '@/components/ChatMessenger'
+import Navbar from '@/components/Navbar'
 
 
 
@@ -52,7 +53,7 @@ export default function Home() {
 
   return (
     <>
-      <Navbar  />
+      <Navbar />
       
       {
           <>

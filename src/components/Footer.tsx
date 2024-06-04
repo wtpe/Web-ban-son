@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
               <a href="http://nisentexpaint.com/" className="flex items-center">
-                  <Image src="/logo-favicon.jpg" className="h-8 me-3" alt="no image" />
+                  <img src="/logo-favicon.jpg" className="h-8 me-3" alt="no image" />
                   <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Nisen tex</span>
               </a>
               

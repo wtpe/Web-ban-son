@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import { useRouter } from 'next/navigation';
 import React,{useState} from 'react'
-import { FaSearch } from 'react-icons/fa';
+import { FaSearch, FaTimes } from 'react-icons/fa';
 
 
   
@@ -40,6 +40,12 @@ export default function Search()  {
       console.log("Lỗi tìm kiếm sản phẩm", error);
     }
   };
+
+  const clearSearch = () => {
+    setQuery('');
+    setResultArr([]);
+  }
+
   return (
     <div className='w-[500px] relative'>
       <div className='relative'>
@@ -50,7 +56,13 @@ export default function Search()  {
           value={query}
           placeholder="Tìm kiếm ..."/>
         <button className="btn " onClick={() => getResult(query)} ><FaSearch className="text-white text-xl"/></button>
+        {resultArr.length > 0 && (
+          <button className="btn absolute right-0" onClick={clearSearch}>
+            <FaTimes className="text-white text-xl" />
+          </button>
+        )}
       </div>
+      
 
       {resultArr.length > 0 &&(
 

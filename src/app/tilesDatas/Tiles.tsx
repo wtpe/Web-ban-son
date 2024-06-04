@@ -17,6 +17,14 @@ export default function  GettingDatasLength() {
 
   const orderData = useSelector((state: RootState) => state.Admin.Order);
 
+  const unprocess= orderData?.filter(e=>(e.isDelivered ==='Đang chờ')||(e.isDelivered ==='Đang giao') );
+  const process= orderData?.filter(e=>e.isDelivered ===('Hoàn thành') );
+
+  
+  
+  
+
+
   return [
     
     {
@@ -41,19 +49,20 @@ export default function  GettingDatasLength() {
       icon: "AiOutlineClockCircle",
       color: "text-yellow-600",
       title: "Đơn hàng chưa xử lý",
-      count: orderData?.length || 0,
+      count: unprocess?.length || 0,
     },
+    
     {
       icon: "GrCompliance",
       color: "text-orange-600",
       title: "Đơn hàng đã hoàn thành",
-      count: 3,
+      count: process?.length || 0,
     },
-    {
-      icon: "TfiStatsUp",
-      color: "text-orange-600",
-      title: "Thống kê tháng",
-      count: 0,
-    },
+    // {
+    //   icon: "TfiStatsUp",
+    //   color: "text-orange-600",
+    //   title: "Thống kê ngày",
+    //   count: 0,
+    // },
   ]
 }

@@ -28,7 +28,7 @@ export default function AdminSidebar() {
                     <li className='py-3 px-1 mb-3'><Link href={'/category/add-category'} className='flex items-center justify-center'> <IoIosAddCircle className='mx-2' /> Thêm danh mục</Link></li>
                     <li  className='py-3 px-1 mb-3' onClick={() => dispatch(setNavActive('activePendingOrder'))}><button className='flex items-center justify-center'> <MdOutlinePendingActions className='mx-2' /> Đơn hàng chưa xử lý</button></li>
                     <li  className='py-3 px-1 mb-3' onClick={() => dispatch(setNavActive('activeDeliveredOrder'))}><button className='flex items-center justify-center' > <GrCompliance className='mx-2' />Đơn hàng đã hoàn thành</button></li>
-
+                    <li  className='py-3 px-1 mb-3' onClick={() => dispatch(setNavActive('activeStatisTable'))}><button className='flex items-center justify-center' > <GrCompliance className='mx-2' />Thống kê</button></li>
                 </ul>
             </div>
 

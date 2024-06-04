@@ -6,21 +6,17 @@ import React, { useEffect, useState } from 'react'
 import { useSWRConfig } from "swr"
 import { toast } from 'react-toastify';
 import DataTable from 'react-data-table-component';
-import Image from 'next/image';
-import Loading from '@/app/loading';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/Store/store';
 import { useRouter } from 'next/navigation';
-import { delete_a_product } from '@/Services/Admin/product';
-import { delete_a_bookmark_item, get_all_bookmark_items } from '@/Services/common/bookmark';
-import { setBookmark } from '@/utils/Bookmark';
+
 import { update_order_status } from '@/Services/Admin/order';
 
 
 interface Order {
     createdAt: string;
     deliveredAt: string;
-    isDelivered: boolean;
+    isDelivered: string;
     isPaid: boolean;
     itemsPrice: number;
     orderItems: {
@@ -79,10 +75,11 @@ export default function PendingOrdersDataTable() {
   const data = useSelector((state: RootState) => state.Admin.Order) as Order[] | [];
   const [search, setSearch] = useState('');
   const [filteredData, setFilteredData] = useState<Order[] | []>([]);
-
+  const [newDeli, setNewDeli] = useState<string>('');
+  const [editingId, setEditingId] = useState<string | null>(null);
 
   useEffect(() => {
-    const filterPendingOrder =  data?.filter((item) => item?.isDelivered === false)
+    const filterPendingOrder =  data?.filter((item) => (item?.isDelivered ==='Đang chờ')||(item?.isDelivered ==='Đang giao') )
     setOrderData(filterPendingOrder)
   }, [data])
 
@@ -92,8 +89,12 @@ export default function PendingOrdersDataTable() {
 
 
 
-  const updateOrderStatus =  async (id: string) => {
-    const res =  await update_order_status(id);
+  const updateOrderStatus =  async (id: string,deli:string) => {
+    const updateData ={
+      _id:id,
+      isDelivered:deli
+    }
+    const res =  await update_order_status(updateData);
     if(res?.success){
       toast.success(res?.message)
       mutate('gettingAllOrdersForAdmin')
@@ -122,16 +123,44 @@ export default function PendingOrdersDataTable() {
     },
     {
       name: 'Trạng thái',
-      selector: (row: Order) => row?.isDelivered ? 'Hoàn thành' : 'Chưa xử lý',
+      selector: (row: Order) => row?.isDelivered ,
       sortable: true,
     },
     {
       name: 'Hành động',
       cell: (row: Order) => (
-        <div>
-        <button onClick={() => updateOrderStatus(row?._id)} className=' w-20 py-2 mx-2 text-xs text-green-600 hover:text-white my-2 hover:bg-green-600 border border-green-600 rounded transition-all duration-700'>Xác nhận</button>
-        <button onClick={() => updateOrderStatus(row?._id)} className=' w-20 py-2 mx-2 text-xs text-red-600 hover:text-white my-2 hover:bg-red-600 border border-red-600 rounded transition-all duration-700'>Huỷ đơn</button>
-        </div>
+        editingId === row._id ? (
+          <div>
+            <select
+              value={newDeli}
+              onChange={(e) => setNewDeli(e.target.value)}
+              name="phân quyền"
+            >
+              {['Đang chờ', 'Đang giao','Hoàn thành','Huỷ đơn'].map((role) => (
+                <option key={role} value={role}>
+                  {role}
+                </option>
+              ))}
+            </select>
+            <button
+              onClick={() => {
+                updateOrderStatus(row._id, newDeli);
+                setEditingId(null);
+              }}
+            >
+              Lưu
+            </button>
+          </div>
+        ) : (
+          <button
+            onClick={() => {
+              setEditingId(row._id);
+              setNewDeli(row.isDelivered);
+            }}
+          >
+            Cập nhật
+          </button>
+        )
       )
     },
 

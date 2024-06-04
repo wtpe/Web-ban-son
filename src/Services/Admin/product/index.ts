@@ -65,6 +65,24 @@ export const add_new_product = async (formData: any) => {
     }
   }
 
+  export const update_product_quantity = async (formData : {_id:string, productQuantity:number}) => {
+    try{
+      const response = await fetch(`/api/Admin/product/update-product-quantity`, {
+      method: 'PUT',
+      headers: {
+        
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ formData }),
+    });
+    
+    const data = await response.json();
+    return data;
+    }catch(error){
+      console.log('Error in updating quantity Product (service) =>', error)
+    }
+    
+  };
 
   export const update_a_product = async (formData : any) => {
     try {

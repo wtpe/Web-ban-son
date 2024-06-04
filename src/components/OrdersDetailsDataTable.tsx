@@ -87,7 +87,8 @@ export default function OrdersDetailsDataTable() {
   const [search, setSearch] = useState('');
   const [filteredData, setFilteredData] = useState<Order[] | []>([]);
 
-
+  
+  console.log('data:',data)
   useEffect(() => {
     setOrderData(data)
   }, [data])
@@ -109,8 +110,8 @@ export default function OrdersDetailsDataTable() {
       sortable: true,
     },
     {
-      name: 'Tên khách hàng',
-      selector: (row: Order) => row?.user?.name,
+      name: 'Tên người nhận',
+      selector: (row: Order) => row?.shippingAddress?.fullName,
       sortable: true,
     },
     {
@@ -120,7 +121,7 @@ export default function OrdersDetailsDataTable() {
     },
     {
       name: 'Trạng thái',
-      selector: (row: Order) => row?.isDelivered ? 'Hoàn thành' : 'Chưa xử lý',
+      selector: (row: Order) => row?.isDelivered ,
       sortable: true,
     },
     {

@@ -1,3 +1,4 @@
+import { update_user } from '@/Services/Admin/user'
 import { RootState } from '@/Store/store'
 import Loading from '@/app/loading'
 import React, { useEffect, useState } from 'react'
@@ -17,10 +18,13 @@ type UserData = {
 const UserDataTable = () => {
   const { mutate } = useSWRConfig()
   const [userData,setUserData] = useState<UserData[]|[]>([]);
+  
   const data = useSelector((state:RootState)=>state.Admin.user) ;
   const isLoading = useSelector((state:RootState)=>state.Admin.userLoading)
   const [search,setSearch]= useState('')
   const [filteredData, setFilteredData] = useState<UserData[] | []>([])
+  const [newRole, setNewRole] = useState<string>('');
+  const [editingId, setEditingId] = useState<string | null>(null);
 
   useEffect(() => {
     setUserData(data)
@@ -30,15 +34,21 @@ const UserDataTable = () => {
     setFilteredData(userData);
   }, [userData])
 
-  // const updateRole =  async (id: string) => {
-  //   const res =  await update_order_status(id);
-  //   if(res?.success){
-  //     toast.success(res?.message)
-  //     mutate('gettingAllOrdersForAdmin')
-  //   }else{
-  //     toast.error(res?.message)
-  //   }
-  // }
+
+  const updateRole =  async (id: string,newRole:string) => {
+    const updateData= {
+      _id: id,
+      role: newRole
+    }
+    const res = await update_user(updateData);
+    if (res?.success) {
+      toast.success(res?.message)
+      mutate('/gettingAllUsersFOrAdmin')
+    }
+    else {
+      toast.error(res?.message)
+    }
+  }
 
   const columns = [
     {
@@ -58,8 +68,45 @@ const UserDataTable = () => {
     },
     {
       name:'Phân quyền',
-      selector:(row:UserData) => row?.role,
-      sortable:true
+      selector:(row:UserData) =>row.role,
+      sortable:true,
+    },
+    {
+      name: 'Hành động',
+      cell: (row: UserData) => (
+        editingId === row._id ? (
+          <div>
+            <select
+              value={newRole}
+              onChange={(e) => setNewRole(e.target.value)}
+              name="phân quyền"
+            >
+              {['user', 'admin'].map((role) => (
+                <option key={role} value={role}>
+                  {role}
+                </option>
+              ))}
+            </select>
+            <button
+              onClick={() => {
+                updateRole(row._id, newRole);
+                setEditingId(null);
+              }}
+            >
+              Lưu
+            </button>
+          </div>
+        ) : (
+          <button
+            onClick={() => {
+              setEditingId(row._id);
+              setNewRole(row.role);
+            }}
+          >
+            Sửa
+          </button>
+        )
+      ),
     },
   ]
 

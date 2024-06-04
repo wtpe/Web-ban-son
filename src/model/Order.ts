@@ -36,7 +36,7 @@ const OrderSchema = new mongoose.Schema({
     totalPrice: { type: Number, required: true },
     isPaid: { type: Boolean, default: false },
     paidAt: { type: Date },
-    isDelivered: { type: Boolean, default: false },
+    isDelivered: { type: String, enum:['Đang chờ','Đang giao','Hoàn thành','Huỷ đơn'], default: 'Đang chờ' },
     deliveredAt: { type: Date },
 },{timestamps : true});
 

@@ -22,7 +22,6 @@ export const get_all_orders = async () => {
 
 
 export const update_order_status = async (id : any) => {
-  console.log(id)
   try {
     const res = await fetch(`/api/Admin/order/update-order-status`, {
       method: 'PUT',
