@@ -5,7 +5,7 @@ import Product from "@/model/Product";
 import Joi from "joi";
 
 
-export const AddProductSchema  = Joi.object({
+const AddProductSchema  = Joi.object({
   productName  : Joi.string().required(),
   productDescription  : Joi.string().required(),
   productImage  : Joi.string().required(),
