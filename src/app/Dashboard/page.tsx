@@ -36,7 +36,7 @@ export default function Dashboard() {
       Router.push('/')
     }
     dispatch(setNavActive('Base'))
-  }, [dispatch, Cookies, Router])
+  }, [dispatch, Router])
 
 
 
