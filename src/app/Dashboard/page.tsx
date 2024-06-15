@@ -32,7 +32,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     const user: userData | null = JSON.parse(localStorage.getItem('user') || '{}');
-    if (!Cookies.get('token') || user?.role !== 'admin' || user?.email !== 'thanhngo2532002@gmail.com') {
+    if (!Cookies.get('token') || user?.role !== 'admin' ) {
       Router.push('/')
     }
     dispatch(setNavActive('Base'))

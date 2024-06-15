@@ -58,11 +58,11 @@ export default function  GettingDatasLength() {
       title: "Đơn hàng đã hoàn thành",
       count: process?.length || 0,
     },
-    // {
-    //   icon: "TfiStatsUp",
-    //   color: "text-orange-600",
-    //   title: "Thống kê ngày",
-    //   count: 0,
-    // },
+    {
+      icon: "TfiStatsUp",
+      color: "text-orange-600",
+      title: "Doanh thu ngày",
+      count: 0,
+    },
   ]
 }
