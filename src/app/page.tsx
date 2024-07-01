@@ -17,6 +17,7 @@ import { setUserData } from '@/utils/UserDataSlice'
 import { RootState } from '@/Store/store'
 import ChatMessenger from '@/components/ChatMessenger'
 import Navbar from '@/components/Navbar'
+import { useRouter } from 'next/navigation'
 
 
 
@@ -26,12 +27,12 @@ export default function Home() {
   // const productLoading = useSelector((state: RootState) => state.Admin.productLoading)
   const [loading, setLoading] = useState(true)
   const [ratio, setRatio] = useState(16/9) 
-
+  const Router = useRouter();
 
   useEffect(() => {
-    const userData = localStorage.getItem('user');
-    if (!userData) return;
-    dispatch(setUserData(JSON.parse(userData)));
+    const user = (localStorage.getItem('user'));
+    if (!user) return;
+    dispatch(setUserData(JSON.parse(user)));
   }, [])
 
   useEffect(() => {
