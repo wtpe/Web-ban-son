@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import AdminNavbar from "@/components/AdminNavbar";
 import AdminSidebar from "@/components/AdminSidebar";
-import SuperComponent from "@/components/SuperComponent";
+// import SuperComponent from "@/components/SuperComponent";
 import { ToastContainer, toast } from "react-toastify";
 import useSWR from "swr";
 import { get_all_categories } from "@/Services/Admin/category";
@@ -34,9 +34,9 @@ interface userData {
   name: String;
 }
 
-// const SuperComponent = dynamic(() => import('@/components/SuperComponent'), {
-//   ssr: false // Only load this component on the client-side
-// });
+const SuperComponent = dynamic(() => import('@/components/SuperComponent'), {
+  ssr: false // Only load this component on the client-side
+});
 
 export default function Dashboard() {
   const Router = useRouter();
