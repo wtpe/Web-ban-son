@@ -44,12 +44,12 @@ export default function Dashboard() {
   useEffect(() => {
     if (typeof window !== "undefined"){
     const user: userData | null = JSON.parse(localStorage.getItem('user') || '{}');
-    if (!Cookies.get('token') || user?.role !== 'admin' ) {
+    if ( user?.role !== 'admin' ) {
       Router.push('/')
     }
     dispatch(setNavActive('Base'))
   }
-}, [dispatch, Cookies, Router])
+}, [dispatch, Router])
 
   const { data: categoryData, isLoading: categoryLoading } = useSWR(
     "/gettingAllCategoriesFOrAdmin",
