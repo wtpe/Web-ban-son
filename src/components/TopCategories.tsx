@@ -32,7 +32,7 @@ export default function TopCategories() {
                     catLoading ? <div className='w-full h-96'><Loading /> </div> :
                         <>
                             {
-                                filteredCategories?.length < 1 ? <h1 className='text-2xl font-semibold text-gray-500'>No Categories</h1> :
+                                filteredCategories?.length < 1 ? <h1 className='text-2xl font-semibold text-gray-500'>Không có danh mục</h1> :
                                 filteredCategories?.map((item: CategoryData) => {
                                     return <CategoryCard 
                                         categoryName={item?.categoryName}

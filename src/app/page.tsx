@@ -22,8 +22,8 @@ import Navbar from '@/components/Navbar'
 
 export default function Home() {
   const dispatch = useDispatch();
-  const categoryLoading = useSelector((state: RootState) => state.Admin.catLoading)
-  const productLoading = useSelector((state: RootState) => state.Admin.productLoading)
+  // const categoryLoading = useSelector((state: RootState) => state.Admin.catLoading)
+  // const productLoading = useSelector((state: RootState) => state.Admin.productLoading)
   const [loading, setLoading] = useState(true)
   const [ratio, setRatio] = useState(16/9) 
 

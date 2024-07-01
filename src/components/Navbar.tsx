@@ -119,15 +119,7 @@ export default function Navbar() {
         <div className="flex-none">
           {user ? (
             <div className="flex items-center justify-center  min-h-full">
-              
-                
-                  
                   <Search/>
-                  
-                  
-                
-                
-              
               <button
                 onClick={() => router.push("/order/create-order")}
                 className="btn btn-circle  mx-2"
